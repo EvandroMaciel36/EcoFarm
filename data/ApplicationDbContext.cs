@@ -12,5 +12,12 @@ namespace EcoFarm.data
         }
 
             public DbSet<LoginModel> CONTA {  get; set; }
+
+                protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<LoginModel>().HasNoKey(); // Configura LoginModel como uma entidade sem chave
+        base.OnModelCreating(modelBuilder);
+    }
+
     }
 }

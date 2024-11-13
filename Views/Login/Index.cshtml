@@ -1,1 +1,28 @@
-﻿
+﻿@model IEnumerable<LoginModel>
+
+@{
+
+}
+
+<table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome do usuario</th>
+      <th scope="col">Senha</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    @if (Model != null)
+    {
+    @foreach (var login in Model)
+    {
+      <tr>
+        <td>@login.Nome_usuario</td> 
+        <td>@login.Senha</td> 
+      </tr>
+    }
+    }
+  </tbody>
+</table>

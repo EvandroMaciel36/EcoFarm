@@ -15,7 +15,7 @@ namespace EcoFarm.Controllers
         public IActionResult Index()
         {
             IEnumerable<LoginModel> login = _db.CONTA;
-            return View();
+            return View(login);
         }
     }
 }
