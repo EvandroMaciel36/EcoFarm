@@ -1,7 +1,7 @@
-﻿@model IEnumerable<LoginModel>
+﻿@model IEnumerable<CadastroModel>
 
-@{
-
+    @{
+    Layout = "~/Views/Tema/"+ViewBag.tema+"/Layout.cshtml";
 }
 
 <table class="table table-dark table-hover">
@@ -16,11 +16,11 @@
 
     @if (Model != null)
     {
-    @foreach (var login in Model)
+    @foreach (var cadastro in Model)
     {
       <tr>
-        <td>@login.Nome_usuario</td> 
-        <td>@login.Senha</td> 
+        <td>@cadastro.Nome_usuario</td> 
+        <td>@cadastro.Senha</td> 
       </tr>
     }
     }

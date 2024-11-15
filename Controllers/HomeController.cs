@@ -15,18 +15,16 @@ namespace EcoFarm.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var tema = "loginECadastro";
+            ViewBag.tema = tema;
+            return View("~/Views/Tema/"+tema+"/Home/Index.cshtml");
         }
 
         public IActionResult Privacy()
         {
-            return View();
-        }
-
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+            var tema = "loginECadastro";
+            ViewBag.tema = tema;
+            return View("~/Views/Tema/" + tema + "/Home/Index.cshtml");
         }
     }
 }

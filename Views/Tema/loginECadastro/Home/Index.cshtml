@@ -1,0 +1,34 @@
+﻿@model IEnumerable<CadastroModel>
+
+@{
+    Layout = "~/Views/Tema/"+ViewBag.tema+"/Layout.cshtml";
+}
+
+
+<div class="text-center">
+    <h1 class="display-4">Bem vindo</h1>
+    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+
+    <table class="table table-dark table-hover">
+  <thead>
+    <tr>
+      <th scope="col">Nome do usuario</th>
+      <th scope="col">Senha</th>
+    </tr>
+  </thead>
+
+  <tbody>
+
+    @if (Model != null)
+    {
+    @foreach (var cadastro in Model)
+    {
+      <tr>
+        <td>@cadastro.Nome_usuario</td> 
+        <td>@cadastro.Senha</td> 
+      </tr>
+    }
+    }
+  </tbody>
+</table>

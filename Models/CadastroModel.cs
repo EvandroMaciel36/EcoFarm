@@ -1,6 +1,6 @@
 ﻿namespace EcoFarm.Models
 {
-    public class LoginModel
+    public class CadastroModel
     {
 
 
