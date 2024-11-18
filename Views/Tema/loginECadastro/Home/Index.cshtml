@@ -1,34 +1,23 @@
-﻿@model IEnumerable<CadastroModel>
-
+﻿
 @{
     Layout = "~/Views/Tema/"+ViewBag.tema+"/Layout.cshtml";
 }
 
+<link href="~/css/home.css" rel="stylesheet" />
+<img id="logoEco" src="~/img/Logo_EcoFarm.png" alt="Logo EcoFarm" />
 
-<div class="text-center">
-    <h1 class="display-4">Bem vindo</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
-
-    <table class="table table-dark table-hover">
-  <thead>
-    <tr>
-      <th scope="col">Nome do usuario</th>
-      <th scope="col">Senha</th>
-    </tr>
-  </thead>
-
-  <tbody>
-
-    @if (Model != null)
-    {
-    @foreach (var cadastro in Model)
-    {
-      <tr>
-        <td>@cadastro.Nome_usuario</td> 
-        <td>@cadastro.Senha</td> 
-      </tr>
-    }
-    }
-  </tbody>
-</table>
+        <div class="login-container">
+        <form>
+            <label for="usuario">Usuário</label>
+            <input type="text" id="usuario" placeholder="">
+            
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="">
+            
+            <button type="submit" class="btn btn-success">ENTRAR</button>
+        </form>
+        </div>
+        <div class="extras">
+            <p class="link">Esqueceu sua senha? <a class="btn btn-secondary btn-sm">clique aqui!</a>
+            <p class="link">Ainda não tem usuário? <a href="@Url.Action("Index", "Cadastro")" class="btn btn-secondary btn-sm">cadastre-se</a>
+        </div>

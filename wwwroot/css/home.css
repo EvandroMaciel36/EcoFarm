@@ -1,0 +1,37 @@
+﻿.logoEco{
+	    height: 200px;
+}
+img {
+	    height: 200px;
+		width: 200px;
+		margin: auto;
+		display: flex;
+		margin-top: 50px;
+
+}
+#usuario{
+	border-radius: 10px;
+border: 0;
+}
+#senha {
+		border-radius: 10px;
+		border: 0;
+}
+.login-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+margin-top: 40px;
+}
+
+.extras {
+margin-top: 40px;
+	
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+.link {
+    padding-left: 23px;
+}
