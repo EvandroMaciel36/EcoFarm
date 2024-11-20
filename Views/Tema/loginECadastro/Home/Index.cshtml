@@ -1,23 +1,28 @@
-﻿
-@{
-    Layout = "~/Views/Tema/"+ViewBag.tema+"/Layout.cshtml";
+﻿@{
+    ViewBag.Title = "Login";
+    Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
 }
 
 <link href="~/css/home.css" rel="stylesheet" />
+<script src="~/js/home.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha384-oQbdo/68tQus/sxEYqaO6NhfAIHcQCpD6fj//EZOqs4D/hUuPgiiWvGTi5UgM9e1" crossorigin="anonymous"></script>
+
 <img id="logoEco" src="~/img/Logo_EcoFarm.png" alt="Logo EcoFarm" />
 
-        <div class="login-container">
-        <form>
-            <label for="usuario">Usuário</label>
-            <input type="text" id="usuario" placeholder="">
-            
-            <label for="senha">Senha</label>
-            <input type="password" id="senha" placeholder="">
-            
-            <button type="submit" class="btn btn-success">ENTRAR</button>
-        </form>
-        </div>
-        <div class="extras">
-            <p class="link">Esqueceu sua senha? <a class="btn btn-secondary btn-sm">clique aqui!</a>
-            <p class="link">Ainda não tem usuário? <a href="@Url.Action("Index", "Cadastro")" class="btn btn-secondary btn-sm">cadastre-se</a>
-        </div>
+<div class="login-container">
+    <form method="post">
+        <label for="usuario">Usuário</label>
+        <input type="text" id="usuario" name="usuario">
+        <p id="mensagemErroUsuario" class="erro"></p>
+        
+        <label for="senha" id="labelSenha">Senha</label>
+        <input type="password" id="senha" name="senha">
+        <p id="mensagemErroSenha" class="erro"></p>
+
+        <button type="submit" class="btn btn-success">ENTRAR</button>
+    </form>
+</div>
+<div class="extras">
+    <p class="link">Esqueceu sua senha? <a href="@Url.Action("Index", "RecuperarSenha")" class="btn btn-light btn-sm">clique aqui!</a></p>
+    <p class="link">Ainda não tem usuário? <a href="@Url.Action("Index", "Cadastro")" class="btn btn-light btn-sm">cadastre-se</a></p>
+</div>

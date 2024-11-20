@@ -1,4 +1,8 @@
-﻿/* styles.css */
+﻿body {
+	    margin-bottom: 25px;
+
+}
+
 .cadastro-container {
   font-family: Arial, sans-serif;
   width: 100%;
@@ -7,8 +11,9 @@
   padding: 20px;
   border-radius: 8px;
 	font-weight: bold;
+	color: white;
 	margin-top: 0;
-
+margin-bottom: 10px;
 }
 
 .logo img {
@@ -20,20 +25,19 @@
 h1 {
   text-align: center;
   font-size: 1.5rem;
-  color: #4caf50;
+  color: white;
 }
 
 .form-cadastro label {
   display: block;
   margin-bottom: 5px;
   font-size: 0.9rem;
-color: white;
+	color: white;
 
 }
 
 .form-cadastro input {
   width: 100%;
-  padding: 10px;
   margin-bottom: 15px;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -57,9 +61,17 @@ color: white;
 .btn-success {
 	display:flex;
 	margin: auto
-
 }
 
 .btn-cadastrar:hover {
   background-color: #45a049;
 }
+.erro {
+	font-family: arial, sans-serif;
+	color: red;
+	transition: color 0.3s ease;
+	background-color: white;
+border-radius: 8px;
+margin-top: 10px;
+
+        }

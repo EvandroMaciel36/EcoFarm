@@ -22,16 +22,35 @@ border: 0;
     justify-content: center;
     align-items: center;
 margin-top: 40px;
+color: white;
+width: 100%
+
 }
 
 .extras {
 margin-top: 40px;
-	
     display: flex;
     justify-content: center;
     align-items: center;
-
+	color: white;
 }
 .link {
     padding-left: 23px;
+}
+.erro {
+	font-family: arial, sans-serif;
+	color: red;
+	transition: color 0.3s ease;
+	background-color: white;
+border-radius: 8px;
+margin-top: 10px;
+
+        }
+.btn-success {
+margin: auto;
+display: flex;
+}
+#labelSenha
+{
+    margin-right: 11px;
 }

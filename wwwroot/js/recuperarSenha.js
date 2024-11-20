@@ -1,16 +1,21 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
 
     const form = document.querySelector("form");
-    const usuario = document.getElementById("usuario");
-    const senha = document.getElementById("senha");
+    const usuario = document.getElementById("nomeUsuario");
+    const senha = document.getElementById("novaSenha");
+    const email = document.getElementById("email");
+
     const mensagemErroUsuario = document.getElementById("mensagemErroUsuario");
-    const mensagemErroSenha = document.getElementById("mensagemErroSenha");
+    const mensagemErroSenha = document.getElementById("mensagemErroNovaSenha");
+    const mensagemErroEmail = document.getElementById("mensagemErroEmail");
+
 
     // Função para exibir uma mensagem de erro
     function exibirMensagemErro(mensagemErro, mensagem) {
         mensagemErro.innerText = mensagem;
         mensagemErro.style.visibility = "visible"; // Mostra o erro
         mensagemErro.style.opacity = "1"; // Garante a visibilidade
+
         setTimeout(() => {
             mensagemErro.style.visibility = "hidden"; // Oculta o erro
             mensagemErro.style.opacity = "0";
@@ -23,22 +28,29 @@
 
         mensagemErroUsuario.style.visibility = "hidden";
         mensagemErroSenha.style.visibility = "hidden";
+        mensagemErroEmail.style.visibility = "hidden";
+
 
         // Validação do campo "Usuário"
         if (usuario.value.trim() === "") {
-            exibirMensagemErro(mensagemErroUsuario, "Este campo não pode estar vazio.");
+            exibirMensagemErro(mensagemErroUsuario, "este campo não pode estar vazio.");
             formValido = false;
         } else if (usuario.value.trim().length < 3) {
-            exibirMensagemErro(mensagemErroUsuario, "O nome de usuário deve ter pelo menos 3 caracteres.");
+            exibirMensagemErro(mensagemErroUsuario, "O nome de usuário tem pelo menos 3 caracteres.");
             formValido = false;
         }
 
-        // Validação do campo "Senha"
+        // Validação do campo "Nova Senha"
         if (senha.value.trim() === "") {
-            exibirMensagemErro(mensagemErroSenha, "Este campo não pode estar vazio.");
+            exibirMensagemErro(mensagemErroSenha, "este campo não pode estar vazio.");
             formValido = false;
         } else if (senha.value.trim().length < 8) {
-            exibirMensagemErro(mensagemErroSenha, "A senha deve ter pelo menos 8 caracteres.");
+            exibirMensagemErro(mensagemErroSenha, "A nova senha deve ter pelo menos 8 caracteres.");
+            formValido = false;
+        }
+
+        if (email.value.trim() === "") {
+            exibirMensagemErro(mensagemErroEmail, "este campo não pode estar vazio.");
             formValido = false;
         }
 
