@@ -1,0 +1,101 @@
+﻿body {
+	    margin-bottom: 25px;
+
+}
+
+.cadastro-container {
+  font-family: Arial, sans-serif;
+  width: 100%;
+  max-width: 500px;
+  margin: 50px auto;
+  padding: 20px;
+  border-radius: 8px;
+	font-weight: bold;
+	color: white;
+	margin-top: 0;
+margin-bottom: 10px;
+}
+
+.logo img {
+  display: block;
+  margin: 0 auto 20px;
+  max-width: 200px;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.form-cadastro label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 0.9rem;
+	color: white;
+
+}
+
+.form-cadastro input {
+  width: 100%;
+  margin-bottom: 15px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  height: 30px;
+
+
+}
+
+.form-cadastro .termos {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.form-cadastro .termos input {
+  margin-right: 10px;
+    width: 10px;
+
+}
+
+.btn-success {
+	display:flex;
+	margin: auto
+}
+
+.btn-cadastrar:hover {
+  background-color: #45a049;
+}
+.erro {
+	font-family: arial, sans-serif;
+	color: red;
+	transition: color 0.3s ease;
+	background-color: white;
+border-radius: 8px;
+margin-top: 10px;
+
+        }
+.produtos-container {
+    display: flex; /* Ativa o flexbox */
+    flex-wrap: wrap; /* Permite quebrar linha se os itens não couberem */
+    justify-content: space-around; /* Distribui espaço entre os itens */
+    gap: 20px; /* Adiciona um espaçamento entre os itens */
+    padding: 20px;
+    color: black;
+}
+
+.produto-card {
+    flex: 1 1 200px; /* Define largura mínima de 300px e ajusta ao espaço disponível */
+    max-width: 200px; /* Define uma largura máxima */
+    border: 1px solid #ccc; /* Borda opcional */
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center; /* Centraliza texto e conteúdo no card */
+    background-color: #fff; /* Cor de fundo */
+}
+
+.produto-img {
+    width: 100%; /* Faz a imagem ocupar toda a largura disponível */
+    height: auto; /* Mantém a proporção da imagem */
+    border-radius: 8px; /* Borda arredondada */
+}

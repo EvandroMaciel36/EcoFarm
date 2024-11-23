@@ -1,0 +1,41 @@
+﻿
+@{
+    ViewBag.Title = "Cadastro";
+    Layout = "~/Views/Tema/"+ViewBag.tema+"/Layout.cshtml";
+}
+<link href="~/css/cadastro.css" rel="stylesheet" />
+    <div class="cadastro-container">
+        <div class="logo">
+            <img id="logoEco" src="~/img/Logo_EcoFarm.png" alt="Logo EcoFarm" />
+        </div>
+                    <h1 class="textoCad">Faça seu cadastro abaixo!</h1>
+    <form class="form-cadastro" action="@Url.Action("Index", "Home")">
+      <label for="nome">Nome completo:</label>
+      <input type="text" id="nome" name="nome" maxlength="100" required>
+
+      <label for="email">E-mail:</label>
+      <input type="email" id="email" name="email" maxlength="150" required>
+
+      <label for="telefone">Número de telefone:</label>
+      <input type="text" id="telefone" name="telefone" minlength="11" maxlength="20" required>
+
+      <label for="endereco">Endereço:</label>
+      <input type="text" id="endereco" name="endereco" maxlength="200" required>
+
+      <label for="usuario">Nome de usuário:</label>
+      <input type="text" id="usuario" name="usuario" maxlength="50" required>
+
+      <label for="senha">Senha:</label>
+      <input type="password" id="senha" name="senha" minlength="8" maxlength="255" required>
+
+      <label for="confirmar-senha">Confirmar senha:</label>
+      <input type="password" id="confirmar-senha" name="confirmar-senha" minlength="8" required>
+
+      <div class="termos">
+        <input type="checkbox" id="termos" name="termos" required>
+        <label for="termos">Concordo em aceitar os termos de serviço e a política de privacidade</label>
+      </div>
+
+      <button type="submit" class="btn btn-success">CADASTRAR</button>
+    </form>
+            </div>

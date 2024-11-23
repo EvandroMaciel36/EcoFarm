@@ -2,7 +2,7 @@
 
 namespace EcoFarm.Controllers
 {
-    public class RecuperarSenha : Controller
+    public class RecuperarSenhaController : Controller
     {
         public IActionResult Index()
         {

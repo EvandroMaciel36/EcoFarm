@@ -1,0 +1,28 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewBag.Title = "Home";
+    Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
+}
+@model IEnumerable<ProdutoModel>
+
+<link href="~/css/paginaInicial.css" rel="stylesheet" />
+<script src="~/js/paginaInicial.js"></script>
+
+<h1>Itens mais procurados!</h1>
+<div class="produtos-container">
+    @foreach (var produto in Model)
+    {
+        <div class="produto-card">
+            <img src="~/img/@produto.Caminho_imagem" alt="@produto.Nome" class="produto-img" />
+            <h3>@produto.Nome</h3>
+            <p>@produto.Descricao</p>
+            <p>Preço: R$ @produto.Preco.ToString("F2")</p>
+            <p>Categoria: @produto.Categoria</p>
+            <button type="submit" class="btn btn-success">comprar</button>
+
+        </div>
+    }
+</div>
+

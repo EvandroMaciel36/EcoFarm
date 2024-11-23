@@ -20,11 +20,5 @@ namespace EcoFarm.Controllers
             return View("~/Views/Tema/"+tema+"/Home/Index.cshtml");
         }
 
-        public IActionResult Privacy()
-        {
-            var tema = "loginECadastro";
-            ViewBag.tema = tema;
-            return View("~/Views/Tema/" + tema + "/Home/Index.cshtml");
-        }
     }
 }

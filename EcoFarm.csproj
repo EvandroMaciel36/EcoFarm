@@ -46,4 +46,11 @@
     <None Include="wwwroot\img\morangos.png" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="wwwroot\css\paginaInicial.css">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

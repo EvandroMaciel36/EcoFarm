@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/layoutSiteECompra.css" asp-append-version="true" />
+</head>
+<body>
+    <!-- Cabeçalho -->
+<header>
+    <!-- Logo -->
+    <div class="logo">
+        <img src="~/img/Logo_EcoFarm.png" alt="Logo EcoFarm">
+    </div>
+
+    <!-- Barra de busca -->
+    <div class="search-bar">
+        <input type="text" placeholder="Buscar produtos" id="search">
+    </div>
+
+    <!-- Carrinho -->
+    <div class="cart">
+        <img src="~/img/carrinho.png" alt="Carrinho">
+        <span>Meu carrinho</span>
+    </div>
+</header>
+
+    <!-- Barra de categorias -->
+    <nav class="category-bar">
+        <a href="#"><img src="~/img/legumes.png" alt="Legumes">Legumes</a>
+        <a href="#"><img src="~/img/frutas.png" alt="Frutas">Frutas</a>
+        <a href="#"><img src="~/img/verduras.png" alt="Verduras">Verduras</a>
+    </nav>
+
+    <!-- Conteúdo principal -->
+    <main>
+        @RenderBody()
+    </main>
+
+</body>
+</html>
