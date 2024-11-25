@@ -1,0 +1,38 @@
+﻿.produto-detalhes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+
+}
+
+.produto-card {
+    max-width: 400px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+    background-color: #fff;
+    color: black
+}
+
+.produto-img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.quantidade {
+    margin: 15px 0;
+}
+
+.quantidade input {
+    width: 50px;
+    text-align: center;
+    margin-left: 10px;
+}
+
+#total {
+    font-weight: bold;
+}

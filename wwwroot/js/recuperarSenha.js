@@ -1,61 +1,51 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
+    const form = document.querySelector(".form-cadastro");
 
-    const form = document.querySelector("form");
-    const usuario = document.getElementById("nomeUsuario");
-    const senha = document.getElementById("novaSenha");
-    const email = document.getElementById("email");
-
-    const mensagemErroUsuario = document.getElementById("mensagemErroUsuario");
-    const mensagemErroSenha = document.getElementById("mensagemErroNovaSenha");
-    const mensagemErroEmail = document.getElementById("mensagemErroEmail");
-
-
-    // Função para exibir uma mensagem de erro
-    function exibirMensagemErro(mensagemErro, mensagem) {
-        mensagemErro.innerText = mensagem;
-        mensagemErro.style.visibility = "visible"; // Mostra o erro
-        mensagemErro.style.opacity = "1"; // Garante a visibilidade
-
-        setTimeout(() => {
-            mensagemErro.style.visibility = "hidden"; // Oculta o erro
-            mensagemErro.style.opacity = "0";
-            mensagemErro.innerText = ""; // Limpa o texto
-        }, 3000); // Remove após 3 segundos
-    }
+    console.log("DOM carregado, formulário localizado:", form);
 
     form.addEventListener("submit", function (event) {
-        let formValido = true;
+        event.preventDefault();
 
-        mensagemErroUsuario.style.visibility = "hidden";
-        mensagemErroSenha.style.visibility = "hidden";
-        mensagemErroEmail.style.visibility = "hidden";
+        const nomeUsuario = document.getElementById("nomeUsuario").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const novaSenha = document.getElementById("novaSenha").value.trim();
 
+        console.log("Dados capturados do formulário:", { nomeUsuario, email, novaSenha });
 
-        // Validação do campo "Usuário"
-        if (usuario.value.trim() === "") {
-            exibirMensagemErro(mensagemErroUsuario, "este campo não pode estar vazio.");
-            formValido = false;
-        } else if (usuario.value.trim().length < 3) {
-            exibirMensagemErro(mensagemErroUsuario, "O nome de usuário tem pelo menos 3 caracteres.");
-            formValido = false;
+        if (!nomeUsuario || !email || !novaSenha || novaSenha.length < 8) {
+            console.log("Erro: Validação do formulário falhou.");
+            alert("Preencha todos os campos corretamente.");
+            return;
         }
 
-        // Validação do campo "Nova Senha"
-        if (senha.value.trim() === "") {
-            exibirMensagemErro(mensagemErroSenha, "este campo não pode estar vazio.");
-            formValido = false;
-        } else if (senha.value.trim().length < 8) {
-            exibirMensagemErro(mensagemErroSenha, "A nova senha deve ter pelo menos 8 caracteres.");
-            formValido = false;
-        }
+        console.log("Iniciando requisição para recuperar senha com os dados:", {
+            NomeUsuario: nomeUsuario,
+            Email: email,
+            NovaSenha: novaSenha
+        });
 
-        if (email.value.trim() === "") {
-            exibirMensagemErro(mensagemErroEmail, "este campo não pode estar vazio.");
-            formValido = false;
-        }
-
-        if (!formValido) {
-            event.preventDefault();
-        }
+        fetch("/RecuperarSenha/RecuperarSenha", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                NomeUsuario: nomeUsuario,
+                Email: email,
+                NovaSenha: novaSenha
+            })
+        })
+            .then(response => response.json())
+            .then(data => {
+                console.log("Resposta recebida do servidor:", data);
+                if (data.sucesso) {
+                    alert(data.mensagem);
+                    window.location.href = "/Home/Index";
+                } else {
+                    alert(data.mensagem);
+                }
+            })
+            .catch(error => {
+                console.error("Erro na requisição:", error);
+                alert("Erro ao processar a solicitação.");
+            });
     });
 });

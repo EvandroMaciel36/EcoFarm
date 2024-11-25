@@ -1,7 +1,44 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
+﻿@{
     ViewBag.Title = "Carrinho de Compras";
     Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
 }
+@model IEnumerable<EcoFarm.Models.CarrinhoModel>
+
+<link href="~/css/carrinho.css" rel="stylesheet" />
+<script src="~/js/carrinho.js"></script>
+
+<h1>Carrinho de Compras</h1>
+
+<div class="carrinho-container">
+        <table class="carrinho-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço Unitário</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Nome</td>
+                        <td>R$ @item.Preco.ToString("F2")</td>
+                        <td>
+                            <input type="number" class="quantidade-input" data-id="@item.Id" value="@item.Quantidade" min="1" />
+                        </td>
+                        <td>R$ <span class="total-item">@item.Total.ToString("F2")</span></td>
+                        <td>
+                            <button class="btn btn-danger remover-item" data-id="@item.Id">Remover</button>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+        <div class="carrinho-footer">
+            <p>Total Geral: R$ <span id="total-geral">@Model.Sum(i => i.Preco * i.Quantidade).ToString("F2")</span></p>
+            <button class="btn btn-success finalizar-compra">Finalizar Compra</button>
+        </div>
+</div>

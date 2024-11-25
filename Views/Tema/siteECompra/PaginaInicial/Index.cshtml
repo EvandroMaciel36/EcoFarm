@@ -20,7 +20,9 @@
             <p>@produto.Descricao</p>
             <p>Preço: R$ @produto.Preco.ToString("F2")</p>
             <p>Categoria: @produto.Categoria</p>
-            <button type="submit" class="btn btn-success">comprar</button>
+<button onclick="window.location.href='@Url.Action("Detalhes", "Produto", new { id = produto.Id_produto })'" class="btn btn-success">
+    Comprar
+</button>
 
         </div>
     }

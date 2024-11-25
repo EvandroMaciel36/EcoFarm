@@ -2,6 +2,7 @@ using EcoFarm.data;
 using EcoFarm.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using EcoFarm.Dtos;
 
 namespace EcoFarm.Controllers
 {
@@ -14,21 +15,25 @@ namespace EcoFarm.Controllers
             _db = db;
         }
         [HttpPost]
-        public IActionResult Autenticar([FromBody] LoginModel login)
+        public IActionResult Autenticar([FromBody] LoginDto login)
         {
             try
             {
-                if (login == null || string.IsNullOrWhiteSpace(login.Usuario) || string.IsNullOrWhiteSpace(login.Senha))
+                if (string.IsNullOrWhiteSpace(login.Usuario) || string.IsNullOrWhiteSpace(login.Senha))
                 {
-                    return Json(new { sucesso = false, mensagem = "Usu·rio ou senha n„o podem estar vazios." });
+                    return Json(new { sucesso = false, mensagem = "Usu√°rio ou senha n√£o podem estar vazios." });
                 }
 
-                var conta = _db.CONTA.FirstOrDefault(c => c.nome_usuario == login.Usuario && c.senha == login.Senha);
+                var conta = _db.CONTA
+                    .Where(c => c.nome_usuario == login.Usuario && c.senha == login.Senha)
+                    .Select(c => new { c.nome_usuario }) // Seleciona apenas o necess√°rio
+                    .FirstOrDefault();
+
                 if (conta != null)
                 {
                     return Json(new { sucesso = true, mensagem = "Login realizado com sucesso!" });
                 }
-                return Json(new { sucesso = false, mensagem = "Usu·rio e senha n„o cadastrados ou incorretos." });
+                return Json(new { sucesso = false, mensagem = "Usu√°rio e senha n√£o cadastrados ou incorretos." });
             }
             catch (Exception ex)
             {

@@ -63,3 +63,14 @@ color: white;
 .btn-cadastrar:hover {
   background-color: #45a049;
 }
+.mensagem-erro {
+    color: red;
+    font-size: 0.8rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
+}
+
+/* Estilo para inputs com erro */
+.input-erro {
+    border-color: red;
+}
