@@ -1,5 +1,6 @@
 ﻿using EcoFarm.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Cryptography.X509Certificates;
 
 namespace EcoFarm.data
 {
@@ -12,12 +13,18 @@ namespace EcoFarm.data
         }
 
             public DbSet<CadastroModel> CONTA {  get; set; }
+
+            public DbSet<LoginModel> LOGIN {  get; set; }
+
             public DbSet<ProdutoModel> PRODUTO { get; set; }
+
+            public DbSet<CarrinhoDeComprasModel> CARRINHO { get; set; }
+
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        modelBuilder.Entity<CadastroModel>().HasNoKey(); // Configura LoginModel como uma entidade sem chave
+        modelBuilder.Entity<LoginModel>().HasNoKey(); // Configura LoginModel como uma entidade sem chave
         base.OnModelCreating(modelBuilder);
     }
 
