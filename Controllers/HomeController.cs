@@ -28,7 +28,7 @@ namespace EcoFarm.Controllers
                 {
                     return Json(new { sucesso = true, mensagem = "Login realizado com sucesso!" });
                 }
-                return Json(new { sucesso = false, mensagem = "Usuário ou senha inválidos." });
+                return Json(new { sucesso = false, mensagem = "Usuário e senha não cadastrados ou incorretos." });
             }
             catch (Exception ex)
             {
