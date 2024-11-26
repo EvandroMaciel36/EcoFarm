@@ -7,6 +7,7 @@
     <title>@ViewData["Title"]</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/layoutSiteECompra.css" asp-append-version="true" />
+    <script src="~/js/search.js"></script>
 </head>
 <body>
     <!-- Cabeçalho -->
@@ -30,15 +31,22 @@
 
     <!-- Barra de categorias -->
     <nav class="category-bar">
-        <a href="#"><img src="~/img/legumes.png" alt="Legumes">Legumes</a>
-        <a href="#"><img src="~/img/frutas.png" alt="Frutas">Frutas</a>
-        <a href="#"><img src="~/img/verduras.png" alt="Verduras">Verduras</a>
+        <a href="/Produto/Legumes">
+            <img src="~/img/legumes.png" alt="Legumes">Legumes
+        </a>
+        <a href="/Produto/Frutas">
+            <img src="~/img/frutas.png" alt="Frutas">Frutas
+        </a>
+        <a href="/Produto/Verduras">
+            <img src="~/img/verduras.png" alt="Verduras">Verduras
+        </a>
     </nav>
 
     <!-- Conteúdo principal -->
-    <main>
+    <main id="main-content">
         @RenderBody()
     </main>
+            <div id="resultados" class="resultados-container" style="color: black;"></div>
 
 </body>
 </html>

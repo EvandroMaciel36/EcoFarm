@@ -61,7 +61,7 @@
                     }
                 })
                 .catch(error => {
-                    console.error("Erro:", error);
+                    console.error("Erro:"   , error);
                     alert("Erro ao remover o item do carrinho.");
                 });
         });

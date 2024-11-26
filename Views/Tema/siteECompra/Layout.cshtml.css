@@ -104,3 +104,33 @@ main {
         width: 100px;
     }
 }
+#main-content {
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+}
+
+#main-content.hidden {
+    opacity: 0;
+    visibility: hidden; /* Garante que o elemento não seja clicável */
+}
+
+#resultados {
+    margin-top: 20px;
+}
+/* Estilo para centralizar os itens no container de resultados */
+.resultados-container {
+    display: flex; /* Habilita o layout flexbox */
+    flex-wrap: wrap; /* Permite que os itens quebrem para a próxima linha */
+    justify-content: center; /* Centraliza os itens horizontalmente */
+    gap: 20px; /* Adiciona espaço entre os itens */
+    margin-top: 20px;
+}
+
+.produto-card {
+    max-width: 200px; /* Limita a largura dos cartões */
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 10px;
+    text-align: center;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Adiciona uma sombra para um efeito visual */
+}

@@ -1,0 +1,25 @@
+﻿@model IEnumerable<EcoFarm.Models.ProdutoModel>
+
+@{
+    ViewBag.Title = "Produtos da Categoria";
+    Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
+
+}
+
+<link href="~/css/paginaInicial.css" rel="stylesheet" />
+
+        <h1>Produtos da Categoria</h1>
+<div class="categoria-container">
+        @foreach (var produto in Model)
+        {
+            <div class="produto-card">
+                <img src="~/img/@produto.Caminho_imagem" alt="@produto.Nome" class="produto-img" />
+                <h3>@produto.Nome</h3>
+                <p>@produto.Descricao</p>
+                <p>Preço: R$ @produto.Preco.ToString("F2")</p>
+                <button onclick="window.location.href='/Produto/Detalhes?id=@produto.Id_produto'" class="btn btn-success">
+                    Comprar
+                </button>
+            </div>
+        }
+</div>
