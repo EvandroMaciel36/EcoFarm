@@ -1,0 +1,13 @@
+﻿@{
+    ViewBag.Title = "Confirmação de pagamento";
+    Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
+}
+
+<link href="~/css/confirmacao.css" rel="stylesheet" />
+ <link href="~/css/confirmacao.js" rel="stylesheet" />
+
+<div class="confirmacao-container">
+    <h1>Pagamento Concluído</h1>
+    <p>Obrigado por sua compra! Seu pagamento foi realizado com sucesso.</p>
+<a href="@Url.Action("Index", "PaginaInicial")" class="btn-voltar">Voltar para a Página Inicial</a>
+</div>

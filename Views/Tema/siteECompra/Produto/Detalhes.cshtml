@@ -16,18 +16,19 @@
         <p>Preço unitário: R$ @Model.Preco.ToString("F2")</p>
         <p>Categoria: @Model.Categoria</p>
         
-<div class="quantidade">
-    <label for="quantidade">Quantidade:</label>
-    <input type="number" id="quantidade" value="1" min="1" max="@Model.Quantidade" />
-</div>
+        <div class="quantidade">
+            <label for="quantidade">Quantidade:</label>
+            <input type="number" id="quantidade" value="1" min="1" max="@Model.Quantidade" />
+        </div>
 
-<p>Total: R$ <span id="total">@Model.Preco.ToString("F2")</span></p>
+        <p>Total: R$ <span id="total">@Model.Preco.ToString("F2")</span></p>
 
-<button id="adicionarCarrinho" class="btn btn-success"
-        data-id="@Model.Id_produto"
-        data-nome="@Model.Nome"
-        data-preco="@Model.Preco">
-    Adicionar ao Carrinho
-</button>
+        <button id="adicionarCarrinho" class="btn btn-success"
+                data-id="@Model.Id_produto"
+                data-nome="@Model.Nome"
+                data-preco="@Model.Preco">
+            Adicionar ao Carrinho
+        </button>
     </div>
 </div>
+

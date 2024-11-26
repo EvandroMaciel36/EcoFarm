@@ -1,44 +1,65 @@
-﻿@{
-    ViewBag.Title = "Carrinho de Compras";
+﻿@model IEnumerable<EcoFarm.Models.CarrinhoModel>
+
+@{
+    ViewBag.Title = "Meu Carrinho";
+    decimal totalGeral = Model.Sum(item => item.Preco_total);
     Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
 }
-@model IEnumerable<EcoFarm.Models.CarrinhoModel>
 
-<link href="~/css/carrinho.css" rel="stylesheet" />
-<script src="~/js/carrinho.js"></script>
+<h1>Meu Carrinho</h1>
 
-<h1>Carrinho de Compras</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome do Produto</th>
+            <th>Preço Unitário</th>
+            <th>Quantidade</th>
+            <th>Total</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Nome_produto</td>
+                <td>R$ @item.Preco_unitario.ToString("F2")</td>
+                <td>@item.Quantidade</td>
+                <td>R$ @item.Preco_total.ToString("F2")</td>
+                <td>
+                    <button onclick="removerDoCarrinho(@item.Id_carrinho)" class="btn btn-danger">Remover</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
-<div class="carrinho-container">
-        <table class="carrinho-table">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Preço Unitário</th>
-                    <th>Quantidade</th>
-                    <th>Total</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.Nome</td>
-                        <td>R$ @item.Preco.ToString("F2")</td>
-                        <td>
-                            <input type="number" class="quantidade-input" data-id="@item.Id" value="@item.Quantidade" min="1" />
-                        </td>
-                        <td>R$ <span class="total-item">@item.Total.ToString("F2")</span></td>
-                        <td>
-                            <button class="btn btn-danger remover-item" data-id="@item.Id">Remover</button>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
-        <div class="carrinho-footer">
-            <p>Total Geral: R$ <span id="total-geral">@Model.Sum(i => i.Preco * i.Quantidade).ToString("F2")</span></p>
-            <button class="btn btn-success finalizar-compra">Finalizar Compra</button>
-        </div>
-</div>
+<h3>Total Geral: R$ @totalGeral.ToString("F2")</h3>
+<button class="btn btn-success" onclick="window.location.href='@Url.Action("Index", "Pagamento")'">Pagar</button>
+
+<script>
+	function removerDoCarrinho(id) {
+		if (confirm("Tem certeza que deseja remover este item do carrinho?")) {
+			fetch(`/Carrinho/RemoverDoCarrinho?id=${id}`, {
+				method: "POST",
+			})
+				.then(response => response.json())
+				.then(data => {
+					if (data.sucesso) {
+						alert(data.mensagem);
+						location.reload(); // Recarrega a página
+					} else {
+						alert(data.mensagem || "Erro ao remover item do carrinho.");
+					}
+				})
+				.catch(error => {
+					console.error("Erro:", error);
+					alert("Erro ao processar a solicitação.");
+				});
+		}
+	}
+
+	function finalizarCompra() {
+		alert("Funcionalidade de pagamento ainda será implementada!");
+	}
+</script>

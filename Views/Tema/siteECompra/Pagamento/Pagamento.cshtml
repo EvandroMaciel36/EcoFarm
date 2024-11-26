@@ -1,0 +1,49 @@
+﻿@model List<EcoFarm.Models.CarrinhoModel>
+
+@{
+    ViewBag.Title = "Pagamento";
+    Layout = "~/Views/Tema/" + ViewBag.tema + "/Layout.cshtml";
+}
+
+<link href="~/css/pagamento.css" rel="stylesheet" />
+<link href="~/css/pagamento.js" rel="stylesheet" />
+
+
+<div class="pagamento-container">
+    <div class="seus-itens">
+        <h2>Seus Itens</h2>
+        @foreach (var item in Model)
+        {
+            <div class="item">
+                <h3>Item @item.Id_carrinho: @item.Nome_produto</h3>
+                <p>Quantidade: @item.Quantidade</p>
+                <p>Total: R$ @item.Preco_total.ToString("F2")</p>
+            </div>
+        }
+    </div>
+
+    <div class="metodo-pagamento">
+        <h2>Método de Pagamento</h2>
+        <form method="post" action="/Pagamento/ProcessarPagamento" action="@Url.Action("LimparCarrinho", "Carrinho")">
+            <div class="opcoes-pagamento">
+                <label>
+                    <input type="radio" name="metodoPagamento" value="Cartão de crédito" required />
+                    Cartão de crédito
+                </label>
+                <label>
+                    <input type="radio" name="metodoPagamento" value="Cartão de débito" />
+                    Cartão de débito
+                </label>
+                <label>
+                    <input type="radio" name="metodoPagamento" value="Pix" />
+                    Pix
+                </label>
+                <label>
+                    <input type="radio" name="metodoPagamento" value="Boleto" />
+                    Boleto
+                </label>
+            </div>
+            <button type="submit" class="btn-pagar">Pagar</button>
+        </form>
+    </div>
+</div>

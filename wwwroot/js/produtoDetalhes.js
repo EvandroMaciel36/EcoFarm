@@ -1,29 +1,41 @@
 ﻿document.addEventListener("DOMContentLoaded", function () {
-    const adicionarCarrinhoBtn = document.getElementById("adicionarCarrinho");
+    const quantidadeInput = document.getElementById("quantidade");
+    const totalSpan = document.getElementById("total");
+    const precoUnitario = parseFloat(document.getElementById("adicionarCarrinho").getAttribute("data-preco"));
 
+    // Atualiza o total ao alterar a quantidade
+    quantidadeInput.addEventListener("input", function () {
+        const quantidade = parseInt(this.value, 10); // Quantidade inserida pelo usuário
+
+        if (!isNaN(quantidade) && quantidade > 0) {
+            const total = precoUnitario * quantidade; // Calcula o total
+            totalSpan.textContent = total.toFixed(2).replace(".", ","); // Atualiza o total no HTML
+        } else {
+            totalSpan.textContent = precoUnitario.toFixed(2).replace(".", ","); // Preço unitário como padrão
+        }
+    });
+
+    // Evento de adicionar ao carrinho
+    const adicionarCarrinhoBtn = document.getElementById("adicionarCarrinho");
     adicionarCarrinhoBtn.addEventListener("click", function () {
         const id = this.getAttribute("data-id");
         const nome = this.getAttribute("data-nome");
-        const preco = parseFloat(this.getAttribute("data-preco"));
-        const quantidadeInput = document.getElementById("quantidade");
         const quantidade = parseInt(quantidadeInput.value, 10);
 
-        // Valida a quantidade antes de enviar
         if (isNaN(quantidade) || quantidade <= 0) {
             alert("Por favor, insira uma quantidade válida maior que zero.");
             return;
         }
 
-        // Envia os dados para o backend
         fetch("/Carrinho/AdicionarAoCarrinho", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                id: id,
+                Id_produto: id,
                 nome: nome,
-                preco: preco,
+                preco: precoUnitario,
                 quantidade: quantidade,
             }),
         })

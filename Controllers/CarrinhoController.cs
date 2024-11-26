@@ -1,5 +1,5 @@
-﻿using EcoFarm.data;
-using EcoFarm.Models;
+﻿using EcoFarm.Models;
+using EcoFarm.data;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
@@ -15,85 +15,84 @@ namespace EcoFarm.Controllers
             _db = db;
         }
 
+        [HttpPost]
+        public IActionResult LimparCarrinho()
+        {
+            var carrinho = _db.CARRINHO.ToList(); // Recupera todos os itens do carrinho
+
+            if (carrinho != null && carrinho.Any())
+            {
+                _db.CARRINHO.RemoveRange(carrinho); // Remove todos os itens do carrinho
+                _db.SaveChanges(); // Salva as alterações no banco de dados
+            }
+
+            // Redireciona para uma página de sucesso (opcional)
+            return RedirectToAction("PagamentoConcluido");
+        }
+
+        /// <summary>
+        /// Exibe os itens no carrinho do cliente.
+        /// </summary>
         public IActionResult Index()
         {
+            // Carrega os itens do carrinho com os dados do produto
+            var carrinho = _db.CARRINHO
+                .Include(c => c.Produto) // Carrega os dados do Produto associado
+                .ToList();
+
             var tema = "siteECompra";
             ViewBag.tema = tema;
-
-            // Buscar itens do carrinho no banco de dados
-            var itensCarrinho = _db.CARRINHO.ToList();
-
-            // Enviar os itens para a view
-            return View($"~/Views/Tema/{tema}/Carrinho/Index.cshtml", itensCarrinho);
+            return View("~/Views/Tema/" + tema + "/Carrinho/Index.cshtml", carrinho);
         }
 
-
+        /// <summary>
+        /// Adiciona um item ao carrinho.
+        /// </summary>
         [HttpPost]
-        public IActionResult AdicionarAoCarrinho(int id, string nome, decimal preco, int quantidade)
+        public IActionResult AdicionarAoCarrinho([FromBody] CarrinhoModel carrinho)
         {
-            Console.WriteLine($"Recebido: Id={id}, Nome={nome}, Preço={preco}, Quantidade={quantidade}");
-            if (quantidade <= 0)
+            if (carrinho == null || carrinho.Quantidade <= 0)
             {
-                return Json(new { sucesso = false, mensagem = "A quantidade deve ser maior que zero." });
+                return Json(new { sucesso = false, mensagem = "Quantidade inválida." });
             }
 
-            var itemExistente = _db.CARRINHO.FirstOrDefault(i => i.Id == id);
-            if (itemExistente != null)
+            // Busca o produto pelo ID
+            var produto = _db.PRODUTO.FirstOrDefault(p => p.Id_produto == carrinho.Id_produto);
+            if (produto == null)
             {
-                // Atualizar quantidade
-                itemExistente.Quantidade += quantidade;
-                _db.CARRINHO.Update(itemExistente);
-            }
-            else
-            {
-                // Adicionar novo item
-                _db.CARRINHO.Add(new CarrinhoModel
-                {
-                    Id = id,
-                    Nome = nome,
-                    Preco = preco,
-                    Quantidade = quantidade
-                });
+                return Json(new { sucesso = false, mensagem = "Produto não encontrado." });
             }
 
+            // Preenche os dados do carrinho
+            carrinho.Nome_produto = produto.Nome;
+            carrinho.Preco_unitario = produto.Preco;
+            carrinho.Preco_total = produto.Preco * carrinho.Quantidade;
+
+            // Adiciona ao banco de dados
+            _db.CARRINHO.Add(carrinho);
             _db.SaveChanges();
 
-            return Json(new { sucesso = true, mensagem = "Produto adicionado ao carrinho." });
+            return Json(new { sucesso = true, mensagem = "Produto adicionado ao carrinho com sucesso!" });
         }
 
+        /// <summary>
+        /// Remove um item do carrinho.
+        /// </summary>
         [HttpPost]
-        public IActionResult AtualizarQuantidade(int id, int quantidade)
-        {
-            if (quantidade <= 0)
-            {
-                return Json(new { sucesso = false, mensagem = "A quantidade deve ser maior que zero." });
-            }
-
-            var item = _db.CARRINHO.FirstOrDefault(i => i.Id == id);
-            if (item != null)
-            {
-                item.Quantidade = quantidade;
-                _db.CARRINHO.Update(item);
-                _db.SaveChanges();
-
-                return Json(new { sucesso = true, totalItem = item.Total });
-            }
-
-            return Json(new { sucesso = false, mensagem = "Item não encontrado." });
-        }
-
-
         [HttpPost]
-        public IActionResult RemoverItem(int id)
+        public IActionResult RemoverDoCarrinho(int id)
         {
-            var item = _db.CARRINHO.FirstOrDefault(i => i.Id == id);
-            if (item != null)
+            var itemCarrinho = _db.CARRINHO.FirstOrDefault(c => c.Id_carrinho == id);
+            if (itemCarrinho == null)
             {
-                _db.CARRINHO.Remove(item);
-                _db.SaveChanges();
+                return Json(new { sucesso = false, mensagem = "Item do carrinho não encontrado." });
             }
 
-            return Json(new { sucesso = true, mensagem = "Produto removido do carrinho." });
+            _db.CARRINHO.Remove(itemCarrinho);
+            _db.SaveChanges();
+
+            return Json(new { sucesso = true, mensagem = "Item removido do carrinho com sucesso!" });
         }
+
     }
 }

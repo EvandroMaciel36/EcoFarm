@@ -33,6 +33,12 @@ namespace EcoFarm.data
                 .WithMany(c => c.Contas)
                 .HasForeignKey(c => c.Id_cliente);
 
+            modelBuilder.Entity<CarrinhoModel>()
+            .HasOne(c => c.Produto)
+            .WithMany()
+            .HasForeignKey(c => c.Id_produto);
+
+
             base.OnModelCreating(modelBuilder);
     }
 

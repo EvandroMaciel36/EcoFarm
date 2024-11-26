@@ -1,0 +1,76 @@
+﻿.pagamento-container {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    background-color: #4c4c4c;
+    color: #fff;
+    font-family: Arial, sans-serif;
+    border-radius: 10px;
+}
+
+.seus-itens, .metodo-pagamento {
+    flex: 1;
+    margin: 0 10px;
+    background: #666;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+h2 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+}
+
+.item {
+    background: #e0e0e0;
+    color: #000;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+}
+
+.item h3 {
+    margin: 0;
+    font-size: 1.2rem;
+}
+
+.item p {
+    margin: 5px 0;
+}
+
+.opcoes-pagamento {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.opcoes-pagamento label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+input[type="radio"] {
+    cursor: pointer;
+}
+
+.btn-pagar {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #4caf50;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-pagar:hover {
+    background-color: #45a049;
+}
